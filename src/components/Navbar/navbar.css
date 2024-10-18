@@ -1,23 +1,67 @@
-nav {
+/* Estilos generales del navbar */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #333;
-  color: #fff;
+  /*background-color: #1a1a1a; !* Fondo oscuro *!*/
+  /*color: white;*/
+  position: relative;
 }
 
-.navbar-logo {
-  display: flex;
-  align-items: center;
+/* Estilos del logo */
+.navbar-logo img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
 
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Menú de links para pantallas grandes */
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+/* Estilos de los items del menú */
+.navbar-item a {
+  /*color: white;*/
   text-decoration: none;
-  color: #fff;
+  font-size: 1rem;
+}
+
+/* Estilos del icono hamburguesa (solo aparece en móviles/tablets) */
+.navbar-hamburger {
+  display: none;
+  cursor: pointer;
+  /*color: white;*/
+}
+
+/* Menu para dispositivos móviles (desplegable) */
+.navbar-links.active {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 100%;
+  /*background-color: #1a1a1a;*/
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1.5rem;
+  z-index: 10;
+}
+
+/* Estilos para pantallas pequeñas (tabletas y móviles) */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-hamburger {
+    display: block;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
 }
