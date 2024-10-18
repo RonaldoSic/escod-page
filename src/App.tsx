@@ -1,11 +1,11 @@
-import Home from "./pages/home.tsx";
+import Home from "./pages/Home.tsx";
+
 
 function App() {
   return (
-    <div>
-      <h1>App</h1>
+    <>
       <Home/>
-    </div>
+    </>
   )
 }
 
