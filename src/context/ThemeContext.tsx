@@ -16,8 +16,12 @@ export const ThemeContext = createContext<TypeThemeContext>({
   },
 });
 
+type TypeThemeProvider = {
+  children: React.ReactNode;
+}
+
 // Create the provider
-export const ThemeProvider: React.FC = ({children}): JSX.Element => {
+export const ThemeProvider: React.FC<TypeThemeProvider> = ({children}): JSX.Element => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [colors, setColors] = useState(ThemeColors.light);
   useEffect(() => {
