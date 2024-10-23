@@ -4,8 +4,9 @@ import {motion} from "framer-motion";
 import {ThemeContext} from "../../context/ThemeContext.tsx";
 import {AiFillMoon, AiFillSun, AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
 import "./navbar.css";
+import EscodLogo from "../ESCOD/ESCOD_logo.tsx";
 
-const Navbar: React.FC<TypeNavbar> = ({logo, links}): JSX.Element => {
+const Navbar: React.FC<TypeNavbar> = ({links}): JSX.Element => {
   const {theme, colors, toggleTheme} = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.matchMedia("(max-width: 768px)").matches);
@@ -104,7 +105,12 @@ const Navbar: React.FC<TypeNavbar> = ({logo, links}): JSX.Element => {
       style={{background: colors.bg100}}>
       {/* Logo */}
       <motion.div className={"logo"}>
-        <img className={"logo-image"} src={logo} alt="logo"/>
+        {/*<img className={"logo-image"} src={logo} alt="logo"/>*/}
+        <EscodLogo
+          width={"45px"}
+          height={"45px"}
+          fill={colors.primary100}
+        />
       </motion.div>
       {/*  */}
       {isMobile ? <NavbarMobile/> : <NavbarDesktop/>}
