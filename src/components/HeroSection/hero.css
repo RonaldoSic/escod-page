@@ -2,35 +2,71 @@
   margin: 2rem;
   display: grid;
   grid-template-columns: 1fr;
-  gird-template-rows: 2fr;
+  grid-gap: 1rem;
+  grid-template-rows: 1fr;
   align-items: center;
 }
 
-/*Hacer un hero-container con efecto de
-glasmorphy
-*/
 .hero-content {
-  /*border: 1px solid red;*/
-  padding: 0 2rem;
-
+  /*background: aqua;*/
 }
 
-
 .hero-image {
-
+  width: 100%;
+  height: calc(100vh - 30rem);
+  /*height: 40rem;*/
+  padding: 0;
+  margin: 0;
+  object-fit: cover;
 }
 
 
 @media (768px <= width <= 1024px) {
+
   .hero {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     margin: 0 2rem;
   }
+
+  .hero-content {
+    padding: 0;
+  }
+
+  .hero-image {
+    height: calc(100vh - 24rem);
+  }
+
+  /*Si esta en posicion horizontal*/
+  @media (orientation: landscape) {
+    .hero {
+      grid-template-columns: 1fr 1fr;
+      margin: 3rem 10rem;
+    }
+
+    .hero-content {
+      padding: 0;
+    }
+
+    .hero-image {
+      height: calc(100vh - 10rem);
+    }
+  }
+
 }
 
 @media (1024px <= width) {
   .hero {
     grid-template-columns: 1fr 1fr;
     margin: 3rem 10rem;
+  }
+
+  .hero-content {
+    padding: 0;
+  }
+
+  .hero-image {
+    margin: 0 2rem;
+    width: 100%;
+    height: calc(100vh - 20rem);
   }
 }

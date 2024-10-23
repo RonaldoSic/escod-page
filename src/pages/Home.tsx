@@ -2,6 +2,8 @@ import Hero from "../components/HeroSection/Hero.tsx";
 import {useContext} from "react";
 import {ThemeContext} from "../context/ThemeContext.tsx";
 import {motion, useScroll} from "framer-motion";
+import Footer from "../components/Footer/Footer.tsx";
+import {FaFacebook, FaSquareTwitter, FaInstagram} from "react-icons/fa6";
 
 const Home = (): JSX.Element => {
   const {colors} = useContext(ThemeContext);
@@ -33,6 +35,13 @@ const Home = (): JSX.Element => {
       <Hero
         title={title}
         description={description}
+      />
+      <Footer title={'ESCOD'} description={'La mejor opción para el desarrollo de software en Guatemala.'}
+              socials={[
+                {icon: <FaFacebook/>, name: 'Facebook', link: 'https://www.facebook.com/escod.gt'},
+                {icon: <FaSquareTwitter/>, name: 'Twitter', link: 'https://twitter.com/escod_gt'},
+                {icon: <FaInstagram/>, name: 'Instagram', link: 'https://www.instagram.com/escod.gt'},
+              ]}
       />
     </div>
   );
