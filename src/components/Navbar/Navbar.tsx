@@ -21,70 +21,85 @@ import {
 const Navbar: React.FC<TypeNavbar> = ({links, drawerWidth, window}) => {
   const {theme, colors, toggleTheme} = useContext(ThemeContext);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
+  const handleDrawerToggle = () => setMobileOpen((prevState) => !prevState)
+  /* El Drawer solo se muestra en pantallas pequeñas*/
+  const drawer = (<Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
+    {/*Espacio para colocar el logo*/}
+    <Box sx={{display: 'flex', justifyContent: 'center', mt: 2, mb: 2}}>
       <EscodLogo fill={colors.primary200} width={"50px"} height={"50px"} animate={false}/>
-      <Divider/>
-      <List>
-        {links.map((link, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton sx={{textAlign: 'center'}}>
-              <ListItemText primary={link.title}/>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
-  );
-
+    <Divider/>
+    <List>
+      {links.map((link, index) => (
+        <ListItem key={index} disablePadding>
+          <ListItemButton sx={{textAlign: 'center'}}>
+            <ListItemText primary={link.title}/>
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
+  </Box>);
   const container = window !== undefined ? () => window().document.body : undefined;
 
 
   return (
-    <Box sx={{display: 'flex'}}>
+    <Box>
       <CssBaseline/>
-      <AppBar component="nav">
+      <AppBar component="nav" style={{background: colors.bg100}}>
         <Toolbar>
+          {/*Espacio para el logo*/}
+          <Box sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}>
+            <EscodLogo fill={colors.primary200} width={"50px"} height={"50px"} animate={false}/>
+          </Box>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{mr: 2, display: {sm: 'none'}}}
-          >
+            sx={{mr: 2, display: {sm: 'none'}}}>
             <AiOutlineMenu/>
           </IconButton>
 
-          <EscodLogo fill={colors.primary200} width={"50px"} height={"50px"} animate={false}/>
-
-
           <Box sx={{display: {xs: 'none', sm: 'block'}}}>
             {links.map((link, index) => (
-              <ListItemText primary={link.title}/>
+              <Button
+                component="motion.button"
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{
+                  duration: 3,
+                  ease: "easeInOut",
+                  delay: 0.2
+                }}
+                key={index} color="inherit" style={{color: colors.text100}}>{link.title}</Button>
             ))}
           </Box>
+
+          {/*Espacio para el boton de cambio de tema*/}
+          <IconButton
+            color="inherit"
+            aria-label="toggle theme"
+            edge="end"
+            onClick={toggleTheme}
+            sx={{ml: 2}}>
+            {theme === 'light' ? <AiFillMoon color={colors.accent100}/> : <AiFillSun color={colors.accent100}/>}
+          </IconButton>
+
+
         </Toolbar>
       </AppBar>
       <nav>
+        {/*El Drawer solo se muestra en pantallas pequeñas*/}
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{keepMounted: true}}
           sx={{
             display: {xs: 'block', sm: 'none'},
             '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth},
-          }}
-        >
+          }}>
           {drawer}
         </Drawer>
       </nav>
